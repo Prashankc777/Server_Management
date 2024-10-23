@@ -2,7 +2,7 @@
 {
     public static class CitiesRepository
     {
-        private static List<string> cities = ["Toronto", "Montreal", "Ottawa", "Calgary", "Halifax"];
+        private static List<string> cities = ["toronto", "montreal", "Ottawa", "Calgary", "Halifax"];
 
         public static List<string> GetCities() => cities;
     }
