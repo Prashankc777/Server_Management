@@ -7,6 +7,7 @@
 {
     <EditForm Model="server" FormName="formServer" OnSubmit="Submit">
 
+        <InputNumber @bind-Value="server.ServerId" class="form-control" hidden />
        <div class="row mb-3">
            <div class="col-2">
                <label class="col-form-label">Name</label>
@@ -54,11 +55,14 @@
 
     protected override void OnParametersSet()
     {
-        server = ServersRepository.GetServerByServerId(Id);
+        server ??= ServersRepository.GetServerByServerId(Id); //null cha vane matra line 
     }
 
     private void Submit()
     {
-        
+        if (server is not null)
+        {
+            ServersRepository.UpdateServer(server.ServerId, server);
+        }
     }
 }
