@@ -5,7 +5,7 @@
 
 @if (server != null)
 {
-    <EditForm Model="server">
+    <EditForm Model="server" FormName="formServer" OnSubmit="Submit">
 
        <div class="row mb-3">
            <div class="col-2">
@@ -32,21 +32,33 @@
             </div>
         </div>
 
-        <button type="submit" class="btn btn-primary">Save</button>
+        <br />
+
+        <button type="submit" class="btn btn-primary">Update</button>
+        &nbsp;
+        <a href="/servers" class="btn btn-primary">Close</a>
     </EditForm>
 }
 
 <br />
-<a href="/servers" class="btn btn-primary">Close</a>
+
 
 @code {
 
     [Parameter]
     public int Id { get; set; }
-    private Server? server;
+
+    [SupplyParameterFromForm(FormName = "formServer")] //multiple form cha vane esari garna sakincha
+
+    private Server? server { get; set; }
+
     protected override void OnParametersSet()
     {
         server = ServersRepository.GetServerByServerId(Id);
     }
 
+    private void Submit()
+    {
+        
+    }
 }
