@@ -5,35 +5,48 @@
 
 @if (server != null)
 {
-    <p>
+    <EditForm Model="server">
 
-        @server.Name
+       <div class="row mb-3">
+           <div class="col-2">
+               <label class="col-form-label">Name</label>
+           </div>
+           <div class="col-6">
+                <InputText @bind-Value="server.Name" class="form-control" />
+           </div>
+       </div>
+        <div class="row mb-3">
+            <div class="col-2">
+                <label class="col-form-label" >Name</label>
+            </div>
+            <div class="col-6">
+                <InputText @bind-Value="server.City" class="form-control" />
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-2">
+                <label class="col-form-label">Name</label>
+            </div>
+            <div class="col-6">
+                <InputCheckbox @bind-Value="server.IsOnline" class="form-check-input" />
+            </div>
+        </div>
 
-    </p>
-    <p>
-
-        @server.City
-
-    </p>
-    <p>
-
-        @server.IsOnline
-
-    </p>
+        <button type="submit" class="btn btn-primary">Save</button>
+    </EditForm>
 }
 
 <br />
 <a href="/servers" class="btn btn-primary">Close</a>
 
 @code {
+
     [Parameter]
     public int Id { get; set; }
-
     private Server? server;
-
     protected override void OnParametersSet()
     {
         server = ServersRepository.GetServerByServerId(Id);
     }
-      
+
 }
