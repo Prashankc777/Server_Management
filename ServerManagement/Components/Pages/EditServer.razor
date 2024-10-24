@@ -1,6 +1,11 @@
-﻿@page "/servers/{id}"
+﻿@page "/servers/{id:int}"
 <h3>Edit Server</h3>
+<br />
+
+@Id
 
 @code {
-    public string Id { get; set; }
+
+    [Parameter]
+    public int Id { get; set; }
 }
