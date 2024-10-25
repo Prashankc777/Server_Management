@@ -1,6 +1,8 @@
 ﻿@page "/servers"
 @inject NavigationManager navigationManager
 
+@rendermode InteractiveServer
+
 <h3>Servers</h3>
 <br />
 
@@ -12,7 +14,7 @@
                 <div class="card">
                     <img src="@($"/images/{city}.png")" class="card-img-top" alt="...">
                     <div class="card-body">
-                        <button type="button" class="btn btn-primary" onclick="@(() => SelectCity(city))">@city</button>
+                        <button type="button" class="btn btn-primary" @onclick="@( () => { SelectCity(city); } )">@city</button>
                     </div>
                 </div>
 
@@ -20,8 +22,6 @@
         }
     </div>
 </div>
-<p>City</p>
-@selectedCity
 <br />
 
 <ServerComponent @rendermode="InteractiveServer"></ServerComponent> @* for server Interactivity *@
@@ -72,6 +72,6 @@
     private void SelectCity(string cityName)
     {
         this.selectedCity = cityName;
+        this.servers = ServersRepository.GetServersByCity(this.selectedCity);
     }
-
 }
