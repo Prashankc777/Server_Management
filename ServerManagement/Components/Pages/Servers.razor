@@ -1,5 +1,4 @@
 ﻿@page "/servers"
-
 @inject NavigationManager navigationManager
 
 <h3>Servers</h3>
@@ -21,15 +20,9 @@
         }
     </div>
 </div>
-
-
-
 <br />
 
-<p>
-    <ServerComponent></ServerComponent>
-</p>
-
+<ServerComponent></ServerComponent> @* for server Interactivity *@
 
 <ul>
     @foreach (Server server in servers)
@@ -45,7 +38,7 @@
             <EditForm Model="server" FormName="@($"form-server-{server.ServerId}")" OnValidSubmit="@(() => DeleteServer(server.ServerId))">
                 <button type="submit" class="btn btn-danger">Delete  </button>
             </EditForm>
-            
+
         </li>
     }
 

@@ -1,37 +1,40 @@
 ﻿@if (server != null)
 {
-    <EditForm Enhance="true" Model="server" FormName="ServerComponentForm" OnSubmit="ChangeServerStatus">
+    <div data-name="@server.Name" data-status="Server is @(server.IsOnline ? "Online" : "Offline")" style="color:@(server.IsOnline ? "green" : "red")">
+        @server.Name is in @server.City that is @(server.IsOnline ? "Online" : "Offline")
+        &nbsp;
+        <button type="submit" class="btn btn-primary"@onclick="ChangeStatus" >Turn On/Off</button>
+    </div>
 
-        <InputNumber @bind-Value="server.ServerId" hidden></InputNumber>
-        <InputText @bind-Value="server.Name" hidden></InputText>
-        <InputText @bind-Value="server.City" hidden></InputText>
-        <InputCheckbox @bind-Value="server.IsOnline" hidden></InputCheckbox>
-       
-        <div data-name="@server.Name" data-status="Server is @(server.IsOnline ? "Online" : "Offline")" style="color:@(server.IsOnline ? "green" : "red")">
-            @server.Name is in @server.City that is @(server.IsOnline ? "Online" : "Offline")
-            &nbsp;
-            <button type="submit" class="btn btn-primary">Turn On/Off</button>
-        </div>
-    </EditForm>
 }
 
 @code {
 
     [SupplyParameterFromForm]
-    private Server? server { get; set; }
+    private Server? server { get; set; } = new Server { Name = "Server 1", City = "Toronto" };
 
 
-    protected override void OnParametersSet()
+    // protected override void OnParametersSet()
+    // {
+    //     server ??= new Server { Name = "Server 1", City = "Toronto" };
+    // }
+
+    // private void ChangeServerStatus()
+    // {
+    //     if (server != null)
+    //     {
+    //         server.IsOnline = !server.IsOnline;
+    //     }
+    // }
+
+    private void ChangeStatus()
     {
-        server ??= new Server { Name = "Server 1", City = "Toronto" };
-    }
-
-    private void ChangeServerStatus()
-    {
-        if (server != null)
+        if(server != null)
         {
-            server.IsOnline = !server.IsOnline;
+            this.server.IsOnline = !server.IsOnline;
         }
+
+       
     }
 
 
