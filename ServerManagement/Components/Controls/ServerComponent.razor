@@ -1,12 +1,37 @@
 ﻿
 
-<div data-name="@server.Name" data-status="Server is @(server.IsOnline ? "Online" : "Offline")" style="color:@(server.IsOnline ? "green" : "red")">
-    @server.Name is in @server.City that is
-</div>
-
-
+@if(server != null)
+{
+    <EditForm Model="server" FormName="ServerComponentForm" OnSubmit="ChangeServerStatus">
+        <div data-name="@server.Name" data-status="Server is @(server.IsOnline ? "Online" : "Offline")" style="color:@(server.IsOnline ? "green" : "red")">
+            @server.Name is in @server.City that is @(server.IsOnline ? "Online" : "Offline")
+            &nbsp;
+            <button type="submit" class="btn btn-primary">Turn On/Off</button>
+        </div>
+    </EditForm>
+}
 
 @code {
-    private Server server = new Server { Name = " Server 1", City = "Toronto" };
+    [SupplyParameterFromForm]
+    private Server? server  { get; set; }
+
+
+    protected override void OnParametersSet()
+    {
+        server ??= new Server
+            {
+                Name = "Server 1",
+                City = "Toronto"
+            };
+    }
+
+    private void ChangeServerStatus()
+    {
+        if (server != null)
+        {
+            server.IsOnline = !server.IsOnline;
+        }
+    }
+
 
 }
