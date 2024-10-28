@@ -6,4 +6,20 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Content Remove="Components\Controls\CityListComponent.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Components\Controls\CityListComponent.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Components\Controls\CityListComponent.razor" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Components\Controls\CityListComponent.razor" />
+  </ItemGroup>
+
 </Project>
