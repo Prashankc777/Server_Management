@@ -1,10 +1,8 @@
 ﻿@page "/server/add"
 @inject NavigationManager NavigationManager
+@rendermode InteractiveServer
 
 <h3>Add Server</h3>
-
-
-
 
 <EditForm Model="server" FormName="formServer" OnValidSubmit="Submit">
     <DataAnnotationsValidator></DataAnnotationsValidator>
